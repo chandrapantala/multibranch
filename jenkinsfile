@@ -24,36 +24,5 @@ pipeline
                 }
             }
         }
-        stage('deploy')
-        {
-            steps
-            {
-                script
-                {
-                    cicd3.newDeploy()
-                }
-            }
-        }
-        stage('test')
-        {
-            steps
-            {
-                script
-                {
-                   cicd3.newGit("FunctionalTesting")
-                   cicd3.newtest("sred") 
-                }
-            }
-        }
-        stage('delv')
-        {
-            steps
-            {
-                script
-                {
-                    cicd3.newDepv()
-                }
-            }
-        }
-    }
+    }	
 }
