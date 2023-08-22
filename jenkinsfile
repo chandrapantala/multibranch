@@ -1,0 +1,59 @@
+@Library('mylib')_
+pipeline
+{
+    agent any
+    stages
+    {
+        stage('down')
+        {
+            steps
+            {
+               script
+               {
+                   cicd3.newGit("maven")
+               }
+            }
+        }
+        stage('build')
+        {
+            steps
+            {
+                script
+                {
+                    cicd3.newMaven()
+                }
+            }
+        }
+        stage('deploy')
+        {
+            steps
+            {
+                script
+                {
+                    cicd3.newDeploy()
+                }
+            }
+        }
+        stage('test')
+        {
+            steps
+            {
+                script
+                {
+                   cicd3.newGit("FunctionalTesting")
+                   cicd3.newtest("sred") 
+                }
+            }
+        }
+        stage('delv')
+        {
+            steps
+            {
+                script
+                {
+                    cicd3.newDepv()
+                }
+            }
+        }
+    }
+}
